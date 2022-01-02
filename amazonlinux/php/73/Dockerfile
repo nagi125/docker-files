@@ -16,4 +16,4 @@ COPY ./conf/www.conf /etc/php-fpm.d/www.conf
 
 EXPOSE 9000
 
-ENTRYPOINT /usr/sbin/php-fpm -F
+ENTRYPOINT ["/usr/sbin/php-fpm",  "-F"]
