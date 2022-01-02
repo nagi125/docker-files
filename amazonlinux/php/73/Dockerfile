@@ -2,8 +2,14 @@ FROM amazonlinux:latest
 
 ENV TZ Asia/Tokyo
 
-RUN yum update -y && \ 
-    amazon-linux-extras install php7.3 -y
+RUN amazon-linux-extras enable php7.3
+
+RUN yum clean metadata && \
+    yum update -y && \
+    yum install -y php-cli php-pdo php-fpm php-json php-mysqlnd \
+
+# postgresqlを利用する場合
+# php-pgsql
 
 COPY ./conf/php.ini /etc/php.ini
 COPY ./conf/www.conf /etc/php-fpm.d/www.conf
